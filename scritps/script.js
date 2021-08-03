@@ -14,7 +14,7 @@ function createDivs(col, rows){
     container.appendChild(div).classList.add("box")
   }
 }
-createDivs(16,16)
+
 
 function grayColor(){
   const boxs = container.querySelectorAll(".box")
@@ -29,7 +29,7 @@ function grayColor(){
   buttonsContainer.appendChild(btnGray).classList.add("btn")
 
 }
-grayColor()
+
 
 
 function blackColor(){
@@ -45,7 +45,7 @@ function blackColor(){
   buttonsContainer.appendChild(btnBlack).classList.add("btn")
 
 }
-blackColor()
+
 
 function rgbColor(){
   const boxs = container.querySelectorAll(".box")
@@ -62,4 +62,40 @@ function rgbColor(){
   buttonsContainer.appendChild(btnRgb).classList.add("btn")
 
 }
+
+
+
+function reSet(){
+  const boxs = container.querySelectorAll(".box")
+  boxs.forEach(box=> box.remove())
+
+}
+
+function reSize(){
+  btnSize.textContent="Grid Size"
+  btnSize.addEventListener("click", () => {
+  let user = prompt("What size do you want ?")
+  if (user===null || user < 1){
+    reSet()
+    createDivs(16,16)
+    blackColor()
+    grayColor()
+    rgbColor()
+  }
+    else {
+      reSet()
+    createDivs(user,user)
+    blackColor()
+    grayColor()
+    rgbColor()
+    }
+  })
+  buttonsContainer.appendChild(btnSize).classList.add(".btn")
+}
+
+
+createDivs(16,16)
+grayColor()
+blackColor()
 rgbColor()
+reSize()
