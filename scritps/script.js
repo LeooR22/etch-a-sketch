@@ -1,26 +1,65 @@
-const container = document.querySelector("#container");
+const container = document.querySelector(".container")
+const btnBlack = document.createElement("button")
+const btnGray = document.createElement("button")
+const btnRgb = document.createElement("button")
+const btnSize = document.createElement("button")
+const buttonsContainer = document.querySelector(".buttons")
 
-
-for (i=0; i<(7*7); i++){
-const content = document.createElement("div");
-content.classList.add("content");
-content.textContent = "1";
-
-container.appendChild(content);
+function createDivs(col, rows){
+  for (let i=0 ; i < (col*rows) ; i++){
+    const div = document.createElement("div")
+    div.style.border = "1px solid red"
+    container.style.gridTemplateColumns = `repeat(${col}, 1fr)`
+    container.style.gridTemplateColumns = `repeat(${rows}, 1fr)`
+    container.appendChild(div).classList.add("box")
+  }
 }
+createDivs(16,16)
 
-
-
-const contentHover = container.querySelectorAll(".content")
-
-contentHover.forEach(content => content.addEventListener("mouseover", pintado))
-
-function pintado() {
-
-  const cajas = document.querySelector(".content"); 
-
-  cajas.classList.remove("content")
-  cajas.classList.add("pintar");
+function grayColor(){
+  const boxs = container.querySelectorAll(".box")
+  btnGray.textContent= `Gray`
+  btnGray.addEventListener(`click`, () =>{
+    boxs.forEach(box => box.addEventListener(`mouseover`, () => {
+       let Rnum = Math.floor(Math.random() * 255)
+       box.style.background = `rgb(${Rnum},${Rnum},${Rnum})`;
+     }))
   
-  
+  })
+  buttonsContainer.appendChild(btnGray).classList.add("btn")
+
 }
+grayColor()
+
+
+function blackColor(){
+  const boxs = container.querySelectorAll(".box")
+  btnBlack.textContent= `Black`
+  btnBlack.addEventListener(`click`, () =>{
+    boxs.forEach(box => box.addEventListener(`mouseover`, () => {
+       
+       box.style.background = "black"
+     }))
+  
+  })
+  buttonsContainer.appendChild(btnBlack).classList.add("btn")
+
+}
+blackColor()
+
+function rgbColor(){
+  const boxs = container.querySelectorAll(".box")
+  btnRgb.textContent= `RGB`
+  btnRgb.addEventListener(`click`, () =>{
+    boxs.forEach(box => box.addEventListener(`mouseover`, () => {
+        let R = Math.floor(Math.random()* 255)
+        let G = Math.floor(Math.random()* 255)
+        let B = Math.floor(Math.random()* 255)
+        box.style.background = `rgb(${R},${G},${B})`;
+     }))
+  
+  })
+  buttonsContainer.appendChild(btnRgb).classList.add("btn")
+
+}
+rgbColor()
